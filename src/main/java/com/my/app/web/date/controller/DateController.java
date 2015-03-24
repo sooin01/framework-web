@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,7 @@ public class DateController {
 	@RequestMapping(value = "/date")
 	public String date(HttpServletRequest request, Model model) {
 		Object obj = request.getSession().getAttribute("aaa");
+		System.out.println("### sesion: " + obj);
 		
 		model.addAttribute("a", request.getParameter("a"));
 		
@@ -31,7 +33,8 @@ public class DateController {
 	public String ajaxDate(@RequestBody Map<String, Object> map) throws Exception {
 		String content = map.get("content").toString();
 		
-		System.out.println("### 1: " + content.getBytes().length);
+		System.out.println("### size: " + content.getBytes().length);
+		System.out.println("### byte: " + StringUtils.join(content.getBytes(), ','));
 		
 		return "success";
 	}
