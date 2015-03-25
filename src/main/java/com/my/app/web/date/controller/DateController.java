@@ -5,6 +5,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,12 +21,23 @@ import com.nhncorp.lucy.security.xss.XssSaxFilter;
 @Controller
 public class DateController {
 	
+	private final Logger log = LoggerFactory.getLogger(DateController.class);
+	
+	@RequestMapping(value = "/")
+	public String index() {
+		this.log.info("### Redirect");
+		return "redirect:/date";
+	}
+	
 	@RequestMapping(value = "/date")
 	public String date(HttpServletRequest request, Model model) {
 		Object obj = request.getSession().getAttribute("aaa");
 		System.out.println("### sesion: " + obj);
 		
 		model.addAttribute("a", request.getParameter("a"));
+		
+		Object details = SecurityContextHolder.getContext().getAuthentication().getDetails();
+		System.out.println(details);
 		
 		return "date/date";
 	}
