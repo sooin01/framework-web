@@ -25,5 +25,17 @@ public class CommonVO implements Serializable {
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
 	}
+	
+	public static interface Remove {
+	}
+	
+	public static interface View {
+	}
+	
+	public static interface Modify {
+	}
+	
+	public static interface Create {
+	}
 
 }
