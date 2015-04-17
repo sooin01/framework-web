@@ -6,12 +6,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.my.app.web.common.vo.CommonVO;
 
 @SuppressWarnings("serial")
-public class FileVO extends CommonVO {
+public class FileVo extends CommonVO {
 	
-	@NotBlank(groups = {FileVO.Create.class, FileVO.Modify.class})
+	@NotBlank(groups = {FileVo.Create.class, FileVo.Modify.class})
 	private String id;
 	
-	@NotBlank(groups = {FileVO.Create.class})
+	@NotBlank(groups = {FileVo.Create.class})
 	private String name;
 	
 	private MultipartFile file;

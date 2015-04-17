@@ -14,7 +14,6 @@
 				url: '/app/file/upload',
 				type: 'post',
 				dataType: 'json',
-				target: '#response',
 				success: function(responseText) {
 					alert(responseText);
 				}
@@ -22,6 +21,21 @@
 			return false;
 		});
 	});
+	
+	function fileUpdate() {
+		$.ajax({
+			url: '/app/file/update',
+			type: 'post',
+			data: {
+				'id': '1',
+				'name': '이름입니다.'
+			},
+			dataType: 'json',
+			success: function() {
+				
+			}
+		});
+	}
 </script>
 </head>
 <body>
@@ -36,7 +50,8 @@
 </form>
 
 <br />
-<div id="response"></div>
+
+<input type="button" value="전송" onclick="fileUpdate();" />
 
 </body>
 </html>
