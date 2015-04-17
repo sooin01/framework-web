@@ -26,15 +26,26 @@
 		$.ajax({
 			url: '/app/file/update',
 			type: 'post',
+			dataType: 'json',
+			//contentType: 'application/json;charset=UTF-8',
+			//data: toJson($('#form2').serializeArray()),
 			data: {
 				'id': '1',
 				'name': '이름입니다.'
 			},
-			dataType: 'json',
 			success: function() {
 				
 			}
 		});
+	}
+	
+	function toJson(array) {
+		var json = {};
+		$.each(array, function(index, ele) {
+			return json[ele.name] = ele.value;
+		});
+
+		return JSON.stringify(json);
 	}
 </script>
 </head>
@@ -51,6 +62,10 @@
 
 <br />
 
+<form id="form2">
+	<input type="text" name="id" value="2" />
+	<input type="text" name="name" value="내용입니다." />
+</form>
 <input type="button" value="전송" onclick="fileUpdate();" />
 
 </body>
