@@ -40,8 +40,12 @@
 		SELECT	DUMMY
 		FROM	DUAL
 		WHERE	DUMMY IN
-		<foreach collection="arr" index="index" open="(" close=")" separator=",">
-			'${arr[index][1]}'
+		<foreach collection="arr" item="subarr" open="(" close=")" separator=",">
+			<foreach collection="subarr" index="index" item="item">
+				<if test="index == 0">
+					#{item}
+				</if>
+			</foreach>
 		</foreach>
 	</select>
 
