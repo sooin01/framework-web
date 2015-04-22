@@ -35,5 +35,14 @@
 				DEPARTMENT_ID
 		FROM	EMPLOYEES
 	</select>
+	
+	<select id="getData" parameterType="dataVo" resultType="string">
+		SELECT	DUMMY
+		FROM	DUAL
+		WHERE	DUMMY IN
+		<foreach collection="arr" index="index" open="(" close=")" separator=",">
+			'${arr[index][1]}'
+		</foreach>
+	</select>
 
 </mapper>

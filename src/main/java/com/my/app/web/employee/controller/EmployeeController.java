@@ -21,6 +21,9 @@ public class EmployeeController {
 	public String getEmployeeList(ModelMap model) {
 		List<DepartmentVo> employeeList = this.employeeService.getEmployeeList();
 		model.addAttribute("employeeList", employeeList);
+		
+		this.employeeService.getData();
+		
 		return "employee/employee";
 	}
 	
