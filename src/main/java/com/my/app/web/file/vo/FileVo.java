@@ -8,10 +8,10 @@ import com.my.app.web.common.vo.CommonVO;
 @SuppressWarnings("serial")
 public class FileVo extends CommonVO {
 	
-	@NotBlank(groups = {FileVo.Create.class, FileVo.Modify.class})
+	@NotBlank(groups = {FileVo.Create.class, FileVo.Modify.class}, message = "id를 입력하세요.")
 	private String id;
 	
-	@NotBlank(groups = {FileVo.Create.class})
+	@NotBlank(groups = {FileVo.Create.class}, message = "name을 입력하세요.")
 	private String name;
 	
 	private MultipartFile file;

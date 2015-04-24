@@ -14,8 +14,8 @@
 				url: '/app/file/upload',
 				type: 'post',
 				dataType: 'json',
-				success: function(responseText) {
-					alert(responseText);
+				success: function(data) {
+					alert(data.result);
 				}
 			});
 			return false;
@@ -30,11 +30,11 @@
 			//contentType: 'application/json;charset=UTF-8',
 			//data: toJson($('#form2').serializeArray()),
 			data: {
-				'id': '1',
+				'id': '',
 				'name': '이름입니다.'
 			},
-			success: function() {
-				
+			success: function(data) {
+				alert(data.result);
 			}
 		});
 	}
@@ -52,7 +52,7 @@
 <body>
 
 <form id="form" action="/app/file/upload" method="post" enctype="multipart/form-data">
-	<input type="text" name="id" value="1" />
+	<input type="text" name="id" value="" />
 	<input type="text" name="name" value="파일입니다." />
 	<br />
 	<input type="file" name="file" />
@@ -62,10 +62,6 @@
 
 <br />
 
-<form id="form2">
-	<input type="text" name="id" value="2" />
-	<input type="text" name="name" value="내용입니다." />
-</form>
 <input type="button" value="전송" onclick="fileUpdate();" />
 
 </body>
