@@ -22,7 +22,7 @@ public class WebSocketController {
 	}
 	
 	@MessageMapping("/hello")
-    @SendTo("/topic/greetings")
+    @SendTo("/res/greetings")
 	public Greeting websocket(HelloMessage helloMessage) {
 		this.logger.info("메시지: {}", helloMessage);
 		return new Greeting("Hello, " + helloMessage.getName() + "!");

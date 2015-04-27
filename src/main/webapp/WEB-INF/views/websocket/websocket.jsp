@@ -5,21 +5,21 @@
 <meta charset="UTF-8">
 <title>웹소켓</title>
 
-<script type="text/javascript" src="/resources/js/websocket/sockjs-0.3.4.js"></script>
-<script type="text/javascript" src="/resources/js/websocket/stomp.js"></script>
+<script type="text/javascript" src="/app/resources/js/websocket/sockjs-0.3.4.js"></script>
+<script type="text/javascript" src="/app/resources/js/websocket/stomp.js"></script>
 
 <script type="text/javascript">
-	var socket = new SockJS('/hello');
+	var socket = new SockJS('/app/hello');
 	var stompClient = Stomp.over(socket);
 	stompClient.connect({}, function(frame) {
         console.log('Connected: ' + frame);
-        stompClient.subscribe('/topic/greetings', function(greeting){
-            console.log(JSON.parse(greeting.body).content);
+        stompClient.subscribe('/res/greetings', function(greeting){
+            console.log('Response: ' + JSON.parse(greeting.body).content);
         });
     });
 	
 	function sendName() {
-        stompClient.send("/app/hello", {}, JSON.stringify({ 'name': '홍길동' }));
+        stompClient.send("/req/hello", {}, JSON.stringify({ 'name': '홍길동' }));
     }
 	
 	function disconnect() {

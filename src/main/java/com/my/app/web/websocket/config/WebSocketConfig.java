@@ -12,12 +12,15 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry config) {
-		config.enableSimpleBroker("/topic");
-		config.setApplicationDestinationPrefixes("/app");
+		// subscribe prefix
+		config.enableSimpleBroker("/res");
+		// send prefix
+		config.setApplicationDestinationPrefixes("/req");
 	}
 
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
+		// WebSocket 대신 SockJS 사용
 		registry.addEndpoint("/hello").withSockJS();
 	}
 
