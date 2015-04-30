@@ -23,12 +23,6 @@ public class DateController {
 	
 	private final Logger log = LoggerFactory.getLogger(DateController.class);
 	
-	@RequestMapping(value = "/")
-	public String index() {
-		this.log.info("### Redirect");
-		return "redirect:/date";
-	}
-	
 	@RequestMapping(value = "/date")
 	public String date(HttpServletRequest request, Model model) {
 		Object obj = request.getSession().getAttribute("aaa");
