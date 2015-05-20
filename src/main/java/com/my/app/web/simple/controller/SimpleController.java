@@ -1,5 +1,7 @@
 package com.my.app.web.simple.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,8 @@ import com.my.app.web.simple.service.SimpleService;
 
 @Controller
 public class SimpleController {
+	
+	static final Logger logger = LoggerFactory.getLogger(SimpleController.class);
 
 	@Autowired
 	SimpleService simpleService;
@@ -20,6 +24,7 @@ public class SimpleController {
 	@ResponseBody
 	public ResponseEntity<String> simple1() {
 		simpleService.simple1();
+		logger.info("Simple1 controller.");
 		return new ResponseEntity<String>(HttpStatus.OK);
 	}
 	
