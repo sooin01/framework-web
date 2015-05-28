@@ -34,4 +34,11 @@
 		<property name="maxUploadSize" value="2147483648" />
 	</bean>
 	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*" />
+			<bean class="com.my.app.web.interceptor.LoggingInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 </beans>
