@@ -9,8 +9,8 @@ import org.apache.commons.lang.builder.ToStringStyle;
 
 public class CommonVO implements Serializable {
 
-	private static final long serialVersionUID = -7920814697146535677L;
-	
+	private static final long serialVersionUID = 7008901253405056128L;
+
 	@Override
 	public boolean equals(Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj);
@@ -23,7 +23,7 @@ public class CommonVO implements Serializable {
 	
 	@Override
 	public String toString() {
-		return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 	
 	public static interface Remove {
