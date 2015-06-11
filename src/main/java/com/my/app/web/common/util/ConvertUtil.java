@@ -11,7 +11,7 @@ import org.springframework.beans.PropertyAccessorFactory;
 
 import com.google.common.base.CaseFormat;
 
-public class CovertUtil {
+public class ConvertUtil {
 
 	public static String underscore2Camel(String name) {
 		return CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, name);
@@ -26,7 +26,7 @@ public class CovertUtil {
 
 		try {
 			t = clazz.newInstance();
-
+			
 			for (PropertyDescriptor propertyDescriptor : BeanUtils.getPropertyDescriptors(clazz)) {
 				String name = propertyDescriptor.getName();
 				String value = map.get(camel2underscore(name));
