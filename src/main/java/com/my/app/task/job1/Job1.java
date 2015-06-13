@@ -15,9 +15,7 @@ public class Job1 {
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
 		ctx.load("spring/task-context.xml");
 		ctx.refresh();
-		
-		while (true) {
-		}
+		ctx.close();
 	}
 	
 	@Scheduled(fixedRate = 1000)
