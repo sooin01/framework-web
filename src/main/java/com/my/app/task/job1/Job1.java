@@ -2,7 +2,9 @@ package com.my.app.task.job1;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -13,63 +15,48 @@ public class Job1 {
 	
 	public static void main(String[] args) {
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
-		ctx.load("spring/task-context.xml");
+		ctx.load("task/task-context.xml");
 		ctx.refresh();
+		
+		while (true) {
+			try {
+				Thread.sleep(60 * 10 * 1000);
+				break;
+			} catch (InterruptedException e) {
+			}
+		}
 		ctx.close();
 	}
 	
-	@Scheduled(fixedRate = 1000)
+	@Scheduled(fixedRate = 100)
 	public void run1() {
+		MDC.put("ID", "Hello1");
+		
 		try {
-			Thread.sleep(2000);
+			task1();
 			logger.info("Job1 :: run1");
 		} catch (Exception e) {
 		}
+		
+		MDC.remove("ID");
 	}
 	
-	@Scheduled(fixedRate = 1000)
+	@Async
+	public void task1() {
+		logger.info(">> task");
+	}
+	
+	@Scheduled(fixedRate = 100)
 	public void run2() {
+		MDC.put("ID", "Hello2");
+		
 		try {
-			Thread.sleep(2000);
+			task1();
 			logger.info("Job1 :: run2");
 		} catch (Exception e) {
 		}
-	}
-	
-	@Scheduled(fixedRate = 1000)
-	public void run3() {
-		try {
-			Thread.sleep(2000);
-			logger.info("Job1 :: run3");
-		} catch (Exception e) {
-		}
-	}
-	
-	@Scheduled(fixedRate = 1000)
-	public void run4() {
-		try {
-			Thread.sleep(2000);
-			logger.info("Job1 :: run4");
-		} catch (Exception e) {
-		}
-	}
-	
-	@Scheduled(fixedRate = 1000)
-	public void run5() {
-		try {
-			Thread.sleep(2000);
-			logger.info("Job1 :: run5");
-		} catch (Exception e) {
-		}
-	}
-	
-	@Scheduled(fixedRate = 1000)
-	public void run6() {
-		try {
-			Thread.sleep(2000);
-			logger.info("Job1 :: run6");
-		} catch (Exception e) {
-		}
+		
+		MDC.remove("ID");
 	}
 	
 }

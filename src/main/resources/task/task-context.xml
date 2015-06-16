@@ -18,7 +18,7 @@
 	<context:component-scan base-package="com.my.app.task.job1" />
 	
 	<task:annotation-driven executor="myExecutor" scheduler="myScheduler" />
-	<task:executor id="myExecutor" pool-size="5" />
-	<task:scheduler id="myScheduler" pool-size="5" />
+	<task:executor id="myExecutor" pool-size="50" />
+	<task:scheduler id="myScheduler" pool-size="50" />
 
 </beans>
