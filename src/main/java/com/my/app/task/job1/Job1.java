@@ -1,10 +1,11 @@
 package com.my.app.task.job1;
 
+import java.util.UUID;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.context.support.GenericXmlApplicationContext;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -28,27 +29,31 @@ public class Job1 {
 		ctx.close();
 	}
 	
-	@Scheduled(fixedRate = 100)
+	@Scheduled(fixedRate = 1000)
 	public void run1() {
-		MDC.put("ID", "Hello1");
+		MDC.put("ID", UUID.randomUUID().toString());
 		
 		try {
-			task1();
 			logger.info("Job1 :: run1");
+			task1();
 		} catch (Exception e) {
 		}
 		
 		MDC.remove("ID");
 	}
 	
-	@Async
 	public void task1() {
-		logger.info(">> task");
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				logger.info(">> task");
+			}
+		}).start();
 	}
 	
-	@Scheduled(fixedRate = 100)
+	@Scheduled(fixedRate = 1000)
 	public void run2() {
-		MDC.put("ID", "Hello2");
+		MDC.put("ID", UUID.randomUUID().toString());
 		
 		try {
 			task1();
